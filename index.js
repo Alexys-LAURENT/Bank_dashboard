@@ -3,8 +3,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const optionBd = {
-    host: '127.0.0.1',
-    user: 'root',
+    host: '',
+    user: '',
     password: '',
     port: 3306,
     database: 'bank_dashboard'
