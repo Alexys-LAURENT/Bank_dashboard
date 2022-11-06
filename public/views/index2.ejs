@@ -147,7 +147,6 @@
 
                             <% let status=transactions30[0].DateTT %>
                                 <% transactions30.forEach(function(item){ %>
-                                    <% console.log(item.DateT," et ",status) %>
                                         <% if(item.DateTT>status || item.DateTT < status) {%>
                                             <div class=" h1transaction">
                                         <h1>
@@ -489,7 +488,6 @@
 <script>
     var transactions3030 = '<%- JSON.stringify(transactions30)%>';
     var transactions31 = JSON.parse(transactions3030);
-    console.log(transactions31);
 
 
     let solde = <%= compte[0].Solde %>;
@@ -636,7 +634,6 @@
 
     var camembert2 = '<%- JSON.stringify(camembert)%>';
     var camembert = JSON.parse(camembert2);
-    console.log(camembert);
 
     var y = 0;
     let sumpaypal = 0;
@@ -648,27 +645,22 @@
     for (y in camembert) {
         if (camembert[y].categorie == "Paypal") {
             sumpaypal = camembert[y].Somme;
-            console.log('paypalchangé');
         }
         else {
             if (camembert[y].categorie == "Nourriture") {
                 sumnourriture = camembert[y].Somme;
-                console.log('nourriturechangé');
             }
             else {
                 if (camembert[y].categorie == "Loisirs") {
                     sumloisirs = camembert[y].Somme;
-                    console.log('loisirschangé');
                 }
                 else {
                     if (camembert[y].categorie == "Vetements") {
                         sumvetements = camembert[y].Somme;
-                        console.log('vetementschangé');
                     }
                     else {
                         if (camembert[y].categorie == "Divers") {
                             sumdivers = camembert[y].Somme;
-                            console.log('diverschangé');
                         }
                     }
                 }
