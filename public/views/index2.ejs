@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+
+
+
+<body>
+    <nav id="nav">
+        <a href="/index2">
+            <div class="navbargauche">
+                <img src="../images/logobig.png" width="90%" alt="">
+            </div>
+        </a>
+        <div class="navbardroite">
+            <div id="logout">
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit" id="btnlogout">Log out</button>
+                </form>
+            </div>
+            <img src="../images/label.png" alt="" id="label" onclick="mobilenavbar()" height="26px">
+            <img src="../images/profil.png" alt="" onclick="logout()" id="profil" width="42px">
+            <img src="../images/nightmod.png" alt="" id="nightmode" width="44px" height="42px"
+                onclick="nightmode(),changecolor(myCamembert,myChart)">
+        </div>
+    </nav>
+    <div class="body">
+        <div class="navgauche" id="navgauche">
+            <a href="/index2" class="active">
+                <div class="ligne">
+                    <img src="../images/dashboard.png" alt="">
+                    <p>DASHBOARD</p>
+                </div>
+            </a>
+            <a class="item-navgauche" href="">
+                <div class="ligne">
+                    <img src="../images/all_graphics.png" alt="">
+                    <p>ALL GRAPHICS</p>
+                </div>
+            </a>
+            <a class="item-navgauche" href="/all-transactions">
+                <div class="ligne">
+                    <img src="../images/all_activities.png" alt="">
+                    <p>ALL ACTIVITES</p>
+                </div>
+            </a>
+            <a class="item-navgauche" href="/transactions-a-venir">
+                <div class="ligne">
+                    <img src="../images/Transactions_sup.png" alt="">
+                    <p>A VENIR</p>
+                </div>
+            </a>
+        </div>
+        <div class="main">
+            <div class="firstrow">
+                <div class="infocontainer">
+                    <div class="flex">
+                        <div class="carde" id="carde">
+                            <h1>
+                                <%= name %>
+                                    <%= lastname %>
+                            </h1>
+                            <h2>N°8582549452</h2>
+                            <div class="p">
+                                <p id="SoldeCard">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="btncontainer">
+                            <div class="revenu">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary boutton" data-toggle="modal"
+                                    data-target="#exampleModal" id="btnrevenu">
+                                    + Revenu
+                                </button>
+                            </div>
+                            <div class="depense">
+                                <button type="button" class="btn btn-primary boutton2" data-toggle="modal"
+                                    data-target="#exampleModal2" id="btndepense">
+                                    + Dépense
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="infos" id="infos">
+                        <div class="depensetot">
+                            <img src="../images/Arrow 1.png" alt="">
+                            <% if(totrentree) { %>
+                                <h3>
+                                    <%= totrentree %>€
+                                </h3>
+                                <% }else{ %>
+                                    <h3>0€</h3>
+                                    <% } %>
+                        </div>
+                        <hr>
+                        <div class="revenutot">
+                            <img src="../images/Arrow 2.png" alt="">
+                            <% if(totdepense) { %>
+                                <h3>
+                                    <%= totdepense %>€
+                                </h3>
+                                <% }else{ %>
+                                    <h3>0€</h3>
+                                    <% } %>
+                        </div>
+                        <hr>
+                        <div class="reccurencetot">
+                            <img src="../images/Group 4.png" alt="">
+                            <% if(totreccurence) { %>
+                                <h3>
+                                    <%= totreccurence %>€
+                                </h3>
+                                <% }else{ %>
+                                    <h3>0€</h3>
+                                    <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart" id="chart">
+                    <div class="charttot">
+                        <p id="SoldeChart">
+                        </p>
+                    </div>
+                    <canvas id="myChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+            <div class="secondrow">
+                <div class="activities" id="activities">
+                    <% if(transactions30==0){ %>
+                        <h2 class="pasdetransactions">Pas de transactions pour le moment... 😪</h2>
+                        <%}else{%>
+                            <div class="h1transaction">
+                                <h1>
+                                    <%= transactions30[0].DateTT %>
+                                </h1>
+                            </div>
+
+                            <% let status=transactions30[0].DateTT %>
+                                <% transactions30.forEach(function(item){ %>
+                                    <% console.log(item.DateT," et ",status) %>
+                                        <% if(item.DateTT>status || item.DateTT < status) {%>
+                                            <div class=" h1transaction">
+                                        <h1>
+                                            <%= item.DateTT %>
+                                        </h1>
+                </div>
+                <div class=" activite">
+                    <div class="transaction-image">
+                        <% if(item.Categorie=="Paypal" ){ %>
+                            <img class="img-paypal" src="../images/icons-categotie/paypal.png" width="40px"
+                                height="40px" alt="">
+                            <% } %>
+
+                                <% if(item.Categorie=="Nourriture" ){ %>
+                                    <img class="img-nourriture" src="../images/icons-categotie/nourriture.png"
+                                        width="38px" height="37px" alt="">
+                                    <% } %>
+
+                                        <% if(item.Categorie=="Loisirs" ){ %>
+                                            <img class="img-loisirs" src="../images/icons-categotie/loisirs.png"
+                                                width="40px" height="40px" alt="">
+                                            <% } %>
+
+                                                <% if(item.Categorie=="Vetements" ){ %>
+                                                    <img class="img-vetements"
+                                                        src="../images/icons-categotie/vetements.png" width="38px"
+                                                        height="40px" alt="">
+                                                    <% } %>
+
+                                                        <% if(item.Categorie=="Divers" ){ %>
+                                                            <img class="img-divers"
+                                                                src="../images/icons-categotie/divers.png" width="40px"
+                                                                height="40px" alt="">
+                                                            <% } %>
+
+                                                                <% if(item.Categorie=="Argentdepoche" ){ %>
+                                                                    <img class="img-adp"
+                                                                        src="../images/icons-categotie/adp.png"
+                                                                        width="35px" height="35px" alt="">
+                                                                    <% } %>
+
+                                                                        <% if(item.Categorie=="Reccurence" ){ %>
+                                                                            <img class="img-reccurence"
+                                                                                src="../images/icons-categotie/reccurence.png"
+                                                                                width="40px" height="40px" alt="">
+                                                                            <% } %>
+
+
+                                                                                <% if(item.Categorie=="Salaire" ){ %>
+                                                                                    <img class="img-salaire"
+                                                                                        src="../images/icons-categotie/salaire.png"
+                                                                                        width="37px" height="37px"
+                                                                                        alt="">
+                                                                                    <% } %>
+                    </div>
+                    <div class="transaction-info-container">
+                        <p class="transaction-nom">
+                            <%= item.Nom %>
+                        </p>
+                        <p class="transaction-categorie">
+                            <%= item.Categorie %>
+                        </p>
+                    </div>
+                    <p class="transaction-montant">
+                        <% if(item.TypeOf=='Depense' ) { %>
+                            <%= "- " +item.Montant + "€" %>
+                                <% }else{ %>
+                                    <%= "+ " +item.Montant + "€" %>
+                                        <% } %>
+                    </p>
+                </div>
+                <% status=item.DateTT %>
+                    <% }else{ %>
+                        <div class="activite">
+                            <div class="transaction-image">
+                                <% if(item.Categorie=="Paypal" ){ %>
+                                    <img class="img-paypal" src="../images/icons-categotie/paypal.png" width="40px"
+                                        height="40px" alt="">
+                                    <% } %>
+
+                                        <% if(item.Categorie=="Nourriture" ){ %>
+                                            <img class="img-nourriture" src="../images/icons-categotie/nourriture.png"
+                                                width="38px" height="37px" alt="">
+                                            <% } %>
+
+                                                <% if(item.Categorie=="Loisirs" ){ %>
+                                                    <img class="img-loisirs" src="../images/icons-categotie/loisirs.png"
+                                                        width="40px" height="40px" alt="">
+                                                    <% } %>
+
+                                                        <% if(item.Categorie=="Vetements" ){ %>
+                                                            <img class="img-vetements"
+                                                                src="../images/icons-categotie/vetements.png"
+                                                                width="38px" height="40px" alt="">
+                                                            <% } %>
+
+                                                                <% if(item.Categorie=="Divers" ){ %>
+                                                                    <img class="img-divers"
+                                                                        src="../images/icons-categotie/divers.png"
+                                                                        width="40px" height="40px" alt="">
+                                                                    <% } %>
+
+                                                                        <% if(item.Categorie=="Argentdepoche" ){ %>
+                                                                            <img class="img-adp"
+                                                                                src="../images/icons-categotie/adp.png"
+                                                                                width="35px" height="35px" alt="">
+                                                                            <% } %>
+
+                                                                                <% if(item.Categorie=="Reccurence" ){ %>
+                                                                                    <img class="img-reccurence"
+                                                                                        src="../images/icons-categotie/reccurence.png"
+                                                                                        width="40px" height="40px"
+                                                                                        alt="">
+                                                                                    <% } %>
+
+
+                                                                                        <% if(item.Categorie=="Salaire"){ %>
+                                                                                            <img class="img-salaire"
+                                                                                                src="../images/icons-categotie/salaire.png"
+                                                                                                width="37px"
+                                                                                                height="37px" alt="">
+                                                                                            <% } %>
+                            </div>
+                            <div class="transaction-info-container">
+                                <p class="transaction-nom">
+                                    <%= item.Nom %>
+                                </p>
+                                <p class="transaction-categorie">
+                                    <%= item.Categorie %>
+                                </p>
+                            </div>
+                            <p class="transaction-montant">
+                                <% if(item.TypeOf=='Depense' ) { %>
+                                    <%= "- " +item.Montant + "€" %>
+                                        <% }else{ %>
+                                            <%= "+ " +item.Montant + "€" %>
+                                                <% } %>
+                            </p>
+                        </div>
+                        <% } %>
+                            <% }); %>
+                                <% } %>
+
+            </div>
+            <div class="camembert" id="camembert">
+                <canvas id="myCamembert" width="200" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un revenu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/addrevenu" method="post" id="submit-revenu">
+                        <input type="text" name="nom" id="nomrevenu" placeholder="Nom"><br><br>
+                        <select name="categorie" id="categorierevenu">
+                            <option value="" disabled selected>Catégorie ▼</option>
+                            <option value="Paypal">Paypal</option>
+                            <option value="Argentdepoche">Argent de poche</option>
+                            <option value="Salaire">Salaire</option>
+                        </select><br><br>
+                        <input name="DateT" type="date" placeholder="jj/mm/aaaa" id="daterevenu"><br><br>
+                        <input name="montant" type="number" step="0.01" placeholder="Montant" id="montantrevenu"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="modal1submit"
+                        onclick="checkdata()">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal2Label">Ajouter une Dépense</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/adddepense" method="post" id="submit-depense">
+                        <input type="text" name="nom" id="nomdepense" placeholder="Nom"><br><br>
+                        <select name="categorie" id="categoriedepense" onchange="checkcategorie()">
+                            <option value="" disabled selected>Catégorie ▼</option>
+                            <option value="Paypal">Paypal</option>
+                            <option value="Nourriture">Nourriture</option>
+                            <option value="Loisirs">Loisirs</option>
+                            <option value="Vetements">Vêtements</option>
+                            <option value="Reccurence">Reccurence</option>
+                            <option value="Divers">Divers</option>
+                        </select><br><br>
+                        <select name="dureereccurence" id="dureereccurence">
+                            <option value="" disabled selected>Durée de la reccurence</option>
+                            <option value="60">Pas de limite</option>
+                            <option value="2">2 Mois</option>
+                            <option value="3">3 Mois</option>
+                            <option value="4">4 Mois</option>
+                            <option value="5">5 Mois</option>
+                            <option value="6">6 Mois</option>
+                            <option value="7">7 Mois</option>
+                            <option value="8">8 Mois</option>
+                            <option value="9">9 Mois</option>
+                            <option value="10">10 Mois</option>
+                            <option value="11">11 Mois</option>
+                            <option value="12">1 an</option>
+                        </select>
+                        <input name="DateT" type="date" placeholder="jj/mm/aaaa" id="datedepense"><br><br>
+                        <input name="montant" type="number" step="0.01" placeholder="Montant" id="montantdepense"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="modal2submit"
+                        onclick="checkdata2()">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mobilenavbar" id="mobilenavbar">
+        <div class="ligne">
+            <a class="active" href="/index2">
+                <img src="../images/dashboard.png" alt="" width="40px" height="40px">
+                <p>DASHBOARD</p>
+            </a>
+        </div>
+        <div class="ligne">
+            <a class="item-navgauche" href="">
+                <img src="../images/all_graphics.png" alt="" width="40px" height="40px">
+                <p>ALL GRAPHICS</p>
+            </a>
+        </div>
+        <div class="ligne">
+            <a class="item-navgauche" href="/all-transactions">
+                <img src="../images/all_activities.png" alt="" width="40px" height="40px">
+                <p>ALL ACTIVITES</p>
+            </a>
+        </div>
+        <div class="ligne">
+            <a class="item-navgauche" href="/transactions-a-venir">
+                <img src="../images/Transactions_sup.png" alt="" width="40px" height="40px">
+                <p>TRANSACTIONS SUP</p>
+            </a>
+        </div>
+    </div>
+
+    <% if (messages.info){%>
+        <div class="alert" id="alert">
+            <p>
+                <%= messages.info %>
+            </p>
+            <div class="rond" onclick="hidealert()">
+                <img src="images/close.png" width="30px" alt="">
+            </div>
+        </div>
+        <% } %>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="../script/script.js"></script>
+            <script>
+                if(localStorage.getItem('mode') == 'dark' ) {
+                nightmode()
+               }
+           </script> 
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    var transactions3030 = '<%- JSON.stringify(transactions30)%>';
+    var transactions31 = JSON.parse(transactions3030);
+    console.log(transactions31);
+
+
+    let solde = <%= compte[0].Solde %>;
+    let solde1 = 0;
+    let solde2 = 0;
+    let solde3 = 0;
+    let solde4 = 0;
+    let solde5 = 0;
+
+    var alltransacsup2 = ' <%-JSON.stringify(alltransacsup) %>';
+    var alltransacsup = JSON.parse(alltransacsup2);
+
+    var i = 0;
+
+    for (i in alltransacsup) {
+        if (alltransacsup[i].TypeOf == "Depense") {
+            solde = solde + alltransacsup[i].Montant
+        } else {
+            solde = solde - alltransacsup[i].Montant
+        }
+    }
+
+    document.getElementById('SoldeCard').innerHTML = solde + '€';
+    document.getElementById('SoldeChart').innerHTML = solde + '€';
+
+    if ('<%= transactions[transactions.length - 5].TypeOf %>' == 'Depense') {
+        solde1 = solde + <%= transactions[transactions.length - 5].Montant %>;
+    } else {
+        solde1 = solde - <%= transactions[transactions.length - 5].Montant %>;
+    };
+
+    if ('<%= transactions[transactions.length - 4].TypeOf %>' == 'Depense') {
+        solde2 = solde1 + <%= transactions[transactions.length - 4].Montant %>;
+    } else {
+        solde2 = solde1 - <%= transactions[transactions.length - 4].Montant %>;
+    };
+
+    if ('<%= transactions[transactions.length - 3].TypeOf %>' == 'Depense') {
+        solde3 = solde2 + <%=transactions[transactions.length - 3].Montant %>;
+    } else {
+        solde3 = solde2 - <%=transactions[transactions.length - 3].Montant %>;
+    };
+
+    if ('<%= transactions[transactions.length -2].TypeOf %> ' == 'Depense') {
+        solde4 = solde3 + <%=transactions[transactions.length - 2].Montant %>;
+    } else {
+        solde4 = solde3 - <%=transactions[transactions.length - 2].Montant %>;
+    };
+
+    if ('<%=transactions[transactions.length- 1].TypeOf %> ' == 'Depense') {
+        solde5 = solde4 + <%=transactions[transactions.length - 1].Montant %>;
+    } else {
+        solde5 = solde4 - <%=transactions[transactions.length - 1].Montant %>;
+    };
+
+
+    let données = [solde5, solde4, solde3, solde2, solde1, solde];
+    let date = Date();
+    let date1 = '<%=transactions[transactions.length- 1].DateT %> ';
+    let date2 = '<%=transactions[transactions.length- 2].DateT%> ';
+    let date3 = '<%= transactions[transactions.length-3].DateT%> ';
+    let date4 = '<%= transactions[transactions.length-4].DateT%>';
+    let date5 = '<%= transactions[transactions.length-5].DateT%>';
+
+    let AllDates = [date1.substring(3, 10), date2.substring(3, 10), date3.substring(3, 10), date4.substring(3, 10), date5.substring(3, 10), date.substring(3, 10)];
+
+
+
+	let chartcolor = "";
+    if (localStorage.getItem('mode') == 'dark' ){
+        chartcolor = "#C7C7C7";
+    }else{
+        chartcolor = "black";
+    }
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data:
+        {
+            labels: AllDates,
+            datasets: [{
+                label: 'Montant du solde',
+                data: données,
+                backgroundColor: ['rgba(255,99,132,0.2)',
+                    'rgba(0,0,0,1)',
+                    'rgba(0,0,0,1)',
+                    'rgba(0,0,0,1)',
+                    'rgba(0,0,0,1)',
+                    'rgba(0,0,0,1)'
+                ],
+                borderColor: ['rgba(255,99,132,1)',
+                    'rgba(54,162,235,1)',
+                    'rgba(255,206,86,1)',
+                    'rgba(75,192,192,1)',
+                    'rgba(153,102,255,1)',
+                    'rgba(255,159,64,1)'
+                ],
+                fill: true,
+                tension: 0.2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    ticks: {
+                        color: chartcolor,
+                    },
+                    beginAtZero: true
+                },
+                x: {
+                    ticks: {
+                        color: chartcolor,
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: chartcolor,
+                    }
+                }
+            },
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var camembert2 = '<%- JSON.stringify(camembert)%>';
+    var camembert = JSON.parse(camembert2);
+    console.log(camembert);
+
+    var y = 0;
+    let sumpaypal = 0;
+    let sumnourriture = 0;
+    let sumloisirs = 0;
+    let sumvetements = 0;
+    let sumdivers = 0;
+
+    for (y in camembert) {
+        if (camembert[y].categorie == "Paypal") {
+            sumpaypal = camembert[y].Somme;
+            console.log('paypalchangé');
+        }
+        else {
+            if (camembert[y].categorie == "Nourriture") {
+                sumnourriture = camembert[y].Somme;
+                console.log('nourriturechangé');
+            }
+            else {
+                if (camembert[y].categorie == "Loisirs") {
+                    sumloisirs = camembert[y].Somme;
+                    console.log('loisirschangé');
+                }
+                else {
+                    if (camembert[y].categorie == "Vetements") {
+                        sumvetements = camembert[y].Somme;
+                        console.log('vetementschangé');
+                    }
+                    else {
+                        if (camembert[y].categorie == "Divers") {
+                            sumdivers = camembert[y].Somme;
+                            console.log('diverschangé');
+                        }
+                    }
+                }
+            }
+        }
+    }
+	let camembertcolor = "";
+    if (localStorage.getItem('mode') == 'dark' ){
+        camembertcolor = "#C7C7C7";
+    }else{
+        camembertcolor = "black";
+    }
+    let camembertdata = [sumpaypal, sumnourriture, sumloisirs, sumvetements, sumdivers];
+
+    const ctx2 = document.getElementById('myCamembert').getContext('2d');
+    const myCamembert = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ['Paypal', 'Nourriture', 'Loisirs', 'Vêtements', 'Divers'],
+            datasets: [{
+                label: 'My First Dataset',
+                data: camembertdata,
+                backgroundColor: ['rgb(255,99,132)',
+                    'rgb(54,162,235)',
+                    'rgb(255,205,86)',
+                    'rgb(49,105,26)',
+                    'rgb(135,64,56)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: camembertcolor,
+                    }
+                }
+            },
+        }
+    });
+
+    function changecolor(myCamembert, myChart) {
+        if(localStorage.getItem('mode') == 'dark' ) {
+            myCamembert.options.plugins.legend.labels = {
+                color: "#C7C7C7",
+            };
+            myChart.options.plugins.legend.labels = {
+                color: "#C7C7C7",
+            };
+            myChart.options.scales.y.ticks = {
+                color: "#C7C7C7",
+            };
+            myChart.options.scales.x.ticks = {
+                color: "#C7C7C7",
+            };
+        } else {
+            myCamembert.options.plugins.legend.labels = {
+                color: "black",
+            };
+            myChart.options.plugins.legend.labels = {
+                color: "black",
+            };
+            myChart.options.scales.y.ticks = {
+                color: "black",
+            };
+            myChart.options.scales.x.ticks = {
+                color: "black",
+            };
+        };
+        myCamembert.update();
+        myChart.update();
+    }
+</script>

@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Karla:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+
+.body {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+nav {
+    width: 100vw;
+    height: 50px;
+    min-height: 50px;
+    max-width: 100%;
+    display: flex !important;
+    flex-direction: row;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbargauche {
+    height: 100%;
+    width: 10vw;
+    min-width: 130px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#nightmode:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+#label {
+    display: none;
+}
+
+.navbardroite {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.navbardroite img {
+    margin-right: 10px;
+}
+
+#profil:hover {
+    cursor: pointer;
+}
+
+#logout {
+    display: none;
+    position: absolute;
+    width: 70px;
+    height: 30px;
+    background-color: white;
+    z-index: 9999;
+    top: 51px;
+    flex-direction: row-reverse;
+    -webkit-box-shadow: 0px 0px 17px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 0px 17px 2px rgba(0, 0, 0, 0.24);
+}
+
+#btnlogout {
+    background-color: transparent;
+    border: none;
+    color: red;
+}
+
+#btnlogout:hover {
+    cursor: pointer;
+}
+
+.navgauche {
+    height: 100vh;
+    width: 10vw;
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
+.navgauche .ligne {
+    margin-top: 22px;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.navgauche .ligne img {
+    width: 22px;
+    height: 22px;
+    margin-left: 7px;
+}
+
+.navgauche .ligne p {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #4B7EFF;
+}
+
+.active {
+    color: #5BB8FC;
+}
+
+.main {
+    width: 90vw;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.title {
+    font-family: "Karla";
+    font-weight: bold;
+}
+
+h1 {
+    font-family: "Karla";
+}
+
+
+.pasdetransactions{
+    font-size: 20px;
+    position: relative;
+    top: 20px;
+}
+
+.block-activite {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.activities {
+    padding-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-radius: 10px;
+}
+
+.activiteavenir {
+    margin-top: 10px;
+    -webkit-box-shadow: 0px 0px 17px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 17px 2px rgba(0, 0, 0, 0.15);
+    display: flex;
+    width: 97%;
+    position: relative;
+    align-items: center;
+    border-radius: 5px;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+.imagescontainer {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 40px;
+    position: relative;
+    top: 20px;
+}
+
+
+#modify-img {
+    margin-left: 15px;
+}
+
+
+.h1transaction {
+    margin-top: 10px;
+    width: 90%;
+    text-align: left;
+}
+
+.h1transaction h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+
+.transaction-image {
+    width: 50px;
+    height: 50px;
+    background-color: #D9D9D9;
+    border-radius: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.img-paypal {
+    position: relative;
+    top: 6px;
+    left: 2px;
+}
+
+.img-nourriture {
+    position: relative;
+    top: 6px;
+    left: 0px;
+}
+
+.img-loisirs {
+    position: relative;
+    top: 5px;
+    left: 1px;
+}
+
+.img-divers {
+    position: relative;
+    top: 3px;
+    left: 1px;
+}
+
+.img-vetements {
+    position: relative;
+    top: 6px;
+    left: 0px;
+}
+
+.img-reccurence {
+    position: relative;
+    top: 5.5px;
+    left: 1px;
+}
+
+.img-adp {
+    position: relative;
+    top: 12px;
+    left: 0px;
+}
+
+.img-salaire {
+    position: relative;
+    top: 5px;
+    left: 1px;
+}
+
+.transaction-info-container {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-nom {
+    position: absolute;
+    top: -10px;
+}
+
+.transaction-categorie {
+    position: absolute;
+    bottom: -10px;
+}
+
+.transaction-montant {
+    font-family: 'Inter';
+    position: absolute;
+    right: 10px;
+    font-size: 23px;
+    top: -5px;
+}
+
+
+
+.mobilenavbar {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.mobilenavbar .ligne {
+    width: 100vw;
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+
+@media screen and (max-width:700px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .main {
+        height: auto;
+    }
+
+    .navgauche {
+        display: none;
+    }
+
+    .main {
+        width: 100vw;
+    }
+
+
+    .activities {
+        width: 100%;
+        margin-top: 20px;
+        align-items: flex-start;
+    }
+
+    .activite {
+        width: 80%;
+    }
+
+
+    .imagescontainer {
+        margin-left: 5px;
+    }
+
+
+
+    #label {
+        display: block;
+    }
+
+    #logout {
+        right: 42px;
+    }
+
+    .pasdetransactions{
+        font-size: 12px;
+    }
+}

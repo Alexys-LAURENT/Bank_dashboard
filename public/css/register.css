@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Karla:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main {
+    border-radius: 10px;
+    width: 350px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.main * {
+    margin: 0;
+}
+
+
+input {
+    width: 80%;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+
+.name {
+    position: relative;
+    left: -33%;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 40px;
+}
+
+.lastname {
+    display: inline-block;
+    position: relative;
+    left: -26%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+
+.email {
+    display: inline-block;
+    position: relative;
+    left: -32%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.password {
+    display: inline-block;
+    position: relative;
+    left: -27%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.nomdecompte {
+    display: inline-block;
+    position: relative;
+    left: -16%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.solde {
+    display: inline-block;
+    position: relative;
+    left: -20.5%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+label {
+    display: inline-block;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+img {
+    position: relative;
+    top: -20px;
+}
+
+button {
+    width: 82%;
+    height: 34px;
+    background-color: #4B7EFF;
+    color: white;
+    border: 1px solid white;
+}
+
+button:hover {
+    border: 1px solid #1e3673;
+}
+
+.inputsolde {
+    margin-bottom: 30px;
+}
+
+h1 {
+    position: relative;
+    top: 10px;
+    font-family: 'Karla', sans-serif;
+}
+
+.login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: underline;
+    color: black;
+}

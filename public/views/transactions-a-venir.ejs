@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css\transactions-a-venir.css">
+</head>
+
+<body>
+    <nav id="nav">
+        <a href="/index2">
+            <div class="navbargauche">
+                <img src="../images/logobig.png" width="90%" alt="">
+            </div>
+        </a>
+        <div class="navbardroite">
+            <div id="logout">
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit" id="btnlogout">Log out</button>
+                </form>
+            </div>
+            <img src="../images/label.png" alt="" id="label" onclick="mobilenavbar()" height="26px">
+            <img src="../images/profil.png" alt="" onclick="logout()" id="profil" width="42px">
+            <img src="../images/nightmod.png" alt="" id="nightmode" width="44px" height="42px"
+                onclick="nightmode(),changecolor(myCamembert,myChart)">
+        </div>
+    </nav>
+    <div class="body">
+        <div class="navgauche" id="navgauche">
+            <a class="item-navgauche" href="/index2">
+                <div class="ligne">
+                    <img src="../images/dashboard.png" alt="">
+                    <p>DASHBOARD</p>
+                </div>
+            </a>
+            <a class="item-navgauche" href="">
+                <div class="ligne">
+                    <img src="../images/all_graphics.png" alt="">
+                    <p>ALL GRAPHICS</p>
+                </div>
+            </a>
+            <a class="item-navgauche" href="/all-transactions">
+                <div class="ligne">
+                    <img src="../images/all_activities.png" alt="">
+                    <p>ALL ACTIVITES</p>
+                </div>
+            </a>
+            <a class="active " href="/transactions-a-venir">
+                <div class="ligne">
+                    <img src="../images/Transactions_sup.png" alt="">
+                    <p>A VENIR</p>
+                </div>
+            </a>
+        </div>
+        <div class="main">
+            <% if(transactionsavenir==0) { %>
+                <h1 class="pasdetransactions">Il n'y a pas de transactions a venir pour le moment... 😪</h1>
+                <% }else{ %>
+                    <h1 class="title">GERER LES TRANSACTIONS A VENIR</h1>
+                    <div class="activities">
+                        <div class="h1transaction">
+                            <h1>
+                                <%= transactionsavenir[0].DateTT %>
+                            </h1>
+                        </div>
+
+                        <% let status=transactionsavenir[0].DateTT %>
+                            <% transactionsavenir.forEach(function(item){ %>
+                                <% console.log(item.DateT," et ",status) %>
+                        <% if(item.DateTT>status || item.DateTT < status) {%>
+                            <div class=" h1transaction">
+                                    <h1>
+                                        <%= item.DateTT %>
+                                    </h1>
+                    </div>
+                    <div class="block-activite">
+                        <div class=" activiteavenir">
+                            <div class="transaction-image">
+                                <% if(item.Categorie=="Paypal" ){ %>
+                                    <img class="img-paypal" src="../images/icons-categotie/paypal.png" width="40px"
+                                        height="40px" alt="">
+                                    <% } %>
+
+                                        <% if(item.Categorie=="Nourriture" ){ %>
+                                            <img class="img-nourriture" src="../images/icons-categotie/nourriture.png"
+                                                width="38px" height="37px" alt="">
+                                            <% } %>
+
+                                                <% if(item.Categorie=="Loisirs" ){ %>
+                                                    <img class="img-loisirs" src="../images/icons-categotie/loisirs.png"
+                                                        width="40px" height="40px" alt="">
+                                                    <% } %>
+
+                                                        <% if(item.Categorie=="Vetements" ){ %>
+                                                            <img class="img-vetements"
+                                                                src="../images/icons-categotie/vetements.png"
+                                                                width="38px" height="40px" alt="">
+                                                            <% } %>
+
+                                                                <% if(item.Categorie=="Divers" ){ %>
+                                                                    <img class="img-divers"
+                                                                        src="../images/icons-categotie/divers.png"
+                                                                        width="40px" height="40px" alt="">
+                                                                    <% } %>
+
+                                                                        <% if(item.Categorie=="Argentdepoche" ){ %>
+                                                                            <img class="img-adp"
+                                                                                src="../images/icons-categotie/adp.png"
+                                                                                width="35px" height="35px" alt="">
+                                                                            <% } %>
+
+                                                                                <% if(item.Categorie=="Reccurence" ){ %>
+                                                                                    <img class="img-reccurence"
+                                                                                        src="../images/icons-categotie/reccurence.png"
+                                                                                        width="40px" height="40px"
+                                                                                        alt="">
+                                                                                    <% } %>
+
+
+                                                                                        <% if(item.Categorie=="Salaire"){ %>
+                                                                                            <img class="img-salaire"
+                                                                                                src="../images/icons-categotie/salaire.png"
+                                                                                                width="37px"
+                                                                                                height="37px" alt="">
+                                                                                            <% } %>
+                            </div>
+                            <div class="transaction-info-container">
+                                <p class="transaction-nom">
+                                    <%= item.Nom %>
+                                </p>
+                                <p class="transaction-categorie">
+                                    <%= item.Categorie %>
+                                </p>
+                            </div>
+                            <p class="transaction-montant">
+                                <% if(item.TypeOf=='Depense' ) { %>
+                                    <%= "- " +item.Montant + "€" %>
+                                        <% }else{ %>
+                                            <%= "+ " +item.Montant + "€" %>
+                                                <% } %>
+                            </p>
+                        </div>
+                        <div class="imagescontainer">
+                            <a
+                                href="/removetransactionavenir/<%= item.TypeOf %>/<%= item.IdT %>/<%= item.Montant %>/<%= item.Nom%>/<%= item.Categorie%>" onclick="event.preventDefault();confirm('Etes-vous sur ?') && window.location.assign('/removetransactionavenir/<%= item.TypeOf %>/<%= item.IdT %>/<%= item.Montant %>/<%= item.Nom%>/<%= item.Categorie%>');"><img
+                                    src="../images/remove.png" width="30px" height="30px" id="remove-img" alt=""></a>
+                            <a
+                                href="/modifytransactionavenir/<%= item.TypeOf %>/<%= item.IdT %>/<%= item.Montant %>/<%= item.Nom %>/<%= item.Categorie %>/<%=item.preset%>"><img
+                                    id="modify-img" class="modify-img" src="../images/edit.png" width="30px" height="30px" alt=""></a>
+                        </div>
+                    </div>
+                    <% status=item.DateTT %>
+                        <% }else{ %>
+                            <div class="block-activite">
+                                <div class="activiteavenir">
+                                    <div class="transaction-image">
+                                        <% if(item.Categorie=="Paypal" ){ %>
+                                            <img class="img-paypal" src="../images/icons-categotie/paypal.png"
+                                                width="40px" height="40px" alt="">
+                                            <% } %>
+
+                                                <% if(item.Categorie=="Nourriture" ){ %>
+                                                    <img class="img-nourriture"
+                                                        src="../images/icons-categotie/nourriture.png" width="38px"
+                                                        height="37px" alt="">
+                                                    <% } %>
+
+                                                        <% if(item.Categorie=="Loisirs" ){ %>
+                                                            <img class="img-loisirs"
+                                                                src="../images/icons-categotie/loisirs.png" width="40px"
+                                                                height="40px" alt="">
+                                                            <% } %>
+
+                                                                <% if(item.Categorie=="Vetements" ){ %>
+                                                                    <img class="img-vetements"
+                                                                        src="../images/icons-categotie/vetements.png"
+                                                                        width="38px" height="40px" alt="">
+                                                                    <% } %>
+
+                                                                        <% if(item.Categorie=="Divers" ){ %>
+                                                                            <img class="img-divers"
+                                                                                src="../images/icons-categotie/divers.png"
+                                                                                width="40px" height="40px" alt="">
+                                                                            <% } %>
+
+                                                                                <% if(item.Categorie=="Argentdepoche" ){%>
+                                                                                    <img class="img-adp"
+                                                                                        src="../images/icons-categotie/adp.png"
+                                                                                        width="35px" height="35px"
+                                                                                        alt="">
+                                                                                    <% } %>
+
+                                                                                        <% if(item.Categorie=="Reccurence"){ %>
+                                                                                            <img class="img-reccurence"
+                                                                                                src="../images/icons-categotie/reccurence.png"
+                                                                                                width="40px"
+                                                                                                height="40px" alt="">
+                                                                                            <% } %>
+
+
+                                                                                                <% if(item.Categorie=="Salaire"){ %>
+                                                                                                    <img class="img-salaire"
+                                                                                                        src="../images/icons-categotie/salaire.png"
+                                                                                                        width="37px"
+                                                                                                        height="37px"
+                                                                                                        alt="">
+                                                                                                    <% } %>
+                                    </div>
+                                    <div class="transaction-info-container">
+                                        <p class="transaction-nom">
+                                            <%= item.Nom %>
+                                        </p>
+                                        <p class="transaction-categorie">
+                                            <%= item.Categorie %>
+                                        </p>
+                                    </div>
+                                    <p class="transaction-montant">
+                                        <% if(item.TypeOf=='Depense' ) { %>
+                                            <%= "- " +item.Montant + "€" %>
+                                                <% }else{ %>
+                                                    <%= "+ " +item.Montant + "€" %>
+                                                        <% } %>
+                                    </p>
+                                </div>
+                                <div class="imagescontainer">
+                                    <a href="/removetransactionavenir/<%= item.TypeOf %>/<%= item.IdT %>/<%= item.Montant %>/<%= item.Nom%>/<%= item.Categorie%>" onclick="event.preventDefault();confirm('Etes-vous sur ?') && window.location.assign('/removetransactionavenir/<%= item.TypeOf %>/<%= item.IdT %>/<%= item.Montant %>/<%= item.Nom%>/<%= item.Categorie%>');"
+                                        id=" remove-img"><img src="../images/remove.png" width="30px" height="30px"
+                                            alt=""></a>
+                                    <a
+                                        href="/modifytransactionavenir/<%= item.TypeOf %>/<%= item.IdT %>/<%= item.Montant %>/<%= item.Nom %>/<%= item.Categorie %>/<%=item.preset%>"><img
+                                            id="modify-img" class="modify-img" src="../images/edit.png" width="30px" height="30px"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% }); %>
+                                    <% } %>
+        </div>
+        <% let test=null %>
+            <% if(test) {%>
+                <h2>
+                    <%= test %>
+                </h2>
+                <% } %>
+    </div>
+    <div class="mobilenavbar" id="mobilenavbar">
+        <div class="ligne">
+            <a class="item-navgauche" href="/index2">
+                <img src="../images/dashboard.png" alt="" width="40px" height="40px">
+                <p>DASHBOARD</p>
+            </a>
+        </div>
+        <div class="ligne">
+            <a class="item-navgauche" href="">
+                <img src="../images/all_graphics.png" alt="" width="40px" height="40px">
+                <p>ALL GRAPHICS</p>
+            </a>
+        </div>
+        <div class="ligne">
+            <a class="item-navgauche" href="/all-transactions">
+                <img src="../images/all_activities.png" alt="" width="40px" height="40px">
+                <p>ALL ACTIVITES</p>
+            </a>
+        </div>
+        <div class="ligne">
+            <a class="active" href="/transactions-a-venir">
+                <img src="../images/Transactions_sup.png" alt="" width="40px" height="40px">
+                <p>TRANSACTIONS SUP</p>
+            </a>
+        </div>
+    </div>
+    <script src="../script/transaction-a-venir.js"></script>
+    <script>
+                if(localStorage.getItem('mode') == 'dark' ) {
+                nightmode()
+               }
+           </script> 
+</body>
+
+</html>
