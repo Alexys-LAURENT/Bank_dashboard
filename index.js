@@ -545,7 +545,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
                 console.log(erreur);
             } else {
                 console.log('Connexion réussie');
-                sql = "Insert into users values(10013,?,?,?,?);";
+                sql = "Insert into users values(null,?,?,?,?);";
                 connection.query(sql, [req.body.name, req.body.email, hashedPassword, req.body.lastname], (erreur, resultat) => {
                     if (erreur) {
                         console.log(erreur);
@@ -556,7 +556,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
                                 throw erreur;
                             } else {
                                 let iduser = resultat[0].IdU;
-                                sql = "insert into compte values (10013,?,null,?,?);";
+                                sql = "insert into compte values (null,?,null,?,?);";
                                 connection.query(sql, [req.body.solde, req.body.nomcompte, iduser], (erreur, resultat) => {
                                     if (erreur) {
                                         throw erreur;
