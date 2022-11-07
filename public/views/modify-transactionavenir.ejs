@@ -63,6 +63,7 @@
 
                         <% let status=transactionsavenir[0].DateTT %>
                             <% transactionsavenir.forEach(function(item){ %>
+                                <% console.log(item.DateT," et ",status) %>
                         <% if(item.DateTT>status || item.DateTT < status) {%>
                             <div class=" h1transaction">
                                     <h1>
@@ -113,8 +114,7 @@
                                                                                     <% } %>
 
 
-                                                                                        <% if(item.Categorie=="Salaire"
-                                                                                            ){ %>
+                                                                                        <% if(item.Categorie=="Salaire"){ %>
                                                                                             <img class="img-salaire"
                                                                                                 src="/images/icons-categotie/salaire.png"
                                                                                                 width="37px"
@@ -179,16 +179,14 @@
                                                                                 width="40px" height="40px" alt="">
                                                                             <% } %>
 
-                                                                                <% if(item.Categorie=="Argentdepoche" ){
-                                                                                    %>
+                                                                                <% if(item.Categorie=="Argentdepoche" ){%>
                                                                                     <img class="img-adp"
                                                                                         src="/images/icons-categotie/adp.png"
                                                                                         width="35px" height="35px"
                                                                                         alt="">
                                                                                     <% } %>
 
-                                                                                        <% if(item.Categorie=="Reccurence"
-                                                                                            ){ %>
+                                                                                        <% if(item.Categorie=="Reccurence"){ %>
                                                                                             <img class="img-reccurence"
                                                                                                 src="/images/icons-categotie/reccurence.png"
                                                                                                 width="40px"
@@ -196,8 +194,7 @@
                                                                                             <% } %>
 
 
-                                                                                                <% if(item.Categorie=="Salaire"
-                                                                                                    ){ %>
+                                                                                                <% if(item.Categorie=="Salaire"){ %>
                                                                                                     <img class="img-salaire"
                                                                                                         src="/images/icons-categotie/salaire.png"
                                                                                                         width="37px"
@@ -306,6 +303,14 @@
             </form>
         </div>
     </div>
+
+    <script>
+
+    function setTwoNumberDecimalDepense() {
+    document.getElementById('montantdepense').value = parseFloat(document.getElementById('montantdepense').value).toFixed(2);
+    }
+
+</script>
 </body>
 
 </html>
