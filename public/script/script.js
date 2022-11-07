@@ -1,4 +1,29 @@
+function setTwoNumberDecimalRevenu() {
+    document.getElementById('montantrevenu').value = parseFloat(document.getElementById('montantrevenu').value).toFixed(2);
+}
 
+function setTwoNumberDecimalDepense() {
+    document.getElementById('montantdepense').value = parseFloat(document.getElementById('montantdepense').value).toFixed(2);
+}
+
+
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function send() {
+    let key = randomIntFromInterval(100000, 999999);
+    var number = {
+        value: key
+    }
+    var xhr = new window.XMLHttpRequest();
+    xhr.open('POST', '/test', true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(JSON.stringify(number));
+    location.href = "/test/" + key;
+}
+
+// document.getElementById('submit-revenu').submit();
 
 function checkdata() {
     const nomrevenu = document.getElementById('nomrevenu');
@@ -81,10 +106,12 @@ function checkdata2() {
         if(nomdepense.value != "" && dureereccurence.value != '' && datedepense.value != '' && montantdepense.value != ''){
             document.getElementById('modal2submit').setAttribute('data-dismiss', 'modal');
             document.getElementById('submit-depense').submit();
+            // console.log('Recc');
         }
     }else if(nomdepense.value != "" && categoriedepense.value != '' && datedepense.value != '' && montantdepense.value != ''){
         document.getElementById('modal2submit').setAttribute('data-dismiss', 'modal');
         document.getElementById('submit-depense').submit();
+        // console.log('Pas recc');
     }
 }
 
