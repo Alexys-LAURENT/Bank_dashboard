@@ -17,7 +17,7 @@ CREATE Table
 CREATE Table
     compte(
         IdC INT(3) AUTO_INCREMENT NOT NULL,
-        Solde FLOAT NOT NULL,
+        Solde FLOAT(10,2) NOT NULL,
         NumC INT(11),
         NomCompte VARCHAR(100),
         IdU INT(3) NOT NULL,
@@ -29,7 +29,7 @@ create table
     transactions(
         IdT INT(11) AUTO_INCREMENT NOT NULL,
         Categorie VARCHAR(50) NOT NULL,
-        Montant FLOAT NOT NULL,
+        Montant FLOAT(10,2) NOT NULL,
         IdC INT(3) NOT NULL,
         TypeOf ENUM('Depense', 'Rentree', 'Init') NOT NULL,
         Image VARCHAR(200),
