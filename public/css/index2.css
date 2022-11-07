@@ -670,4 +670,31 @@ select {
         color: black;
         content: "" !important;
     }
+
+    h3{
+        font-size: 1.1rem !important;
+        position: relative;
+        top: 3px;
+    }
+
+    .img-depensetot{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: -3px;
+    }
+
+    .img-revenutot{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: -3px;
+    }
+
+    .img-reccurencetot{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: -3px;
+    }
 }
