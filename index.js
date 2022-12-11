@@ -82,7 +82,7 @@ app.get("/index2", checkAuthenticated, (req, res) => {
                                     throw erreur;
                                 } else {
                                     idcompte = resultat[0].IdC;
-                                    sql = "select ROUND(sum(Montant),2) as totdepense from transactions where substr(DateT,6,2) = Month(curDate()) and IdC = ? and TypeOf like 'Depense'";
+                                    sql = "select ROUND(sum(Montant),2) as totdepense from transactions where substr(DateT,6,2) = Month(curDate()) and Year(DateT) = Year(curdate()) and IdC = ? and TypeOf like 'Depense'";
                                     connection.query(sql, [idcompte], (erreur, resultat) => {
                                         if (erreur) {
                                             throw erreur;
@@ -93,7 +93,7 @@ app.get("/index2", checkAuthenticated, (req, res) => {
                                             } else {
                                                 totdepense = resultat[0].totdepense;
                                             }
-                                            sql = "select ROUND(sum(Montant),2) as totrentree from transactions where substr(DateT,6,2) = Month(curDate()) and IdC = ? and TypeOf like 'Rentree'"
+                                            sql = "select ROUND(sum(Montant),2) as totrentree from transactions where substr(DateT,6,2) = Month(curDate()) and Year(DateT) = Year(curdate()) and IdC = ? and TypeOf like 'Rentree'"
                                             connection.query(sql, [idcompte], (erreur, resultat) => {
                                                 if (erreur) {
                                                     throw erreur;
@@ -104,7 +104,7 @@ app.get("/index2", checkAuthenticated, (req, res) => {
                                                     } else {
                                                         totrentree = resultat[0].totrentree;
                                                     }
-                                                    sql = "select ROUND(sum(Montant),2) as totreccurence from transactions where substr(DateT,6,2) = Month(curDate()) and IdC = ? and Categorie like 'reccurence'";
+                                                    sql = "select ROUND(sum(Montant),2) as totreccurence from transactions where substr(DateT,6,2) = Month(curDate()) and Year(DateT) = Year(curdate()) and IdC = ? and Categorie like 'reccurence'";
                                                     connection.query(sql, [idcompte], (erreur, resultat) => {
                                                         if (erreur) {
                                                             throw erreur;
